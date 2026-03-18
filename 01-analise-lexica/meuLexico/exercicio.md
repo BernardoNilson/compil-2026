@@ -47,9 +47,11 @@ nomes de avaliações
 • Na última linha aparece o nome a ser considerado como nota de substituição.
 Esta linha é opcional.
 Veja um exemplo de arquivo de entrada (válido):
+
 P1, PS, ME, TF
 1
 (((P1+ME)+TF)/2)
 PS
+
 Escreva, e teste, um anlisador léxico que será futuramente utilizado para análise
 sintática do arquivo submetido ao servidor.
