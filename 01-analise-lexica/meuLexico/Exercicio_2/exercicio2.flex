@@ -11,8 +11,9 @@ import java.io.InputStreamReader;
 
 %{
 
-public static int IDENT		= 257;
-public static int NUM			= 258;
+// A partir de 256
+public static int STRING	= 257;
+public static int VALUE	  = 258;
 
 public static int IF 			= 259; 
 public static int ELSE 		= 260;
@@ -20,6 +21,7 @@ public static int PUBLIC 	= 261;
 public static int PRIVATE = 262;
 public static int CLASS		= 263;
 public static int EQUALS	= 264;
+public statis int PROVA   = 374;
 
 
 /**
@@ -77,30 +79,19 @@ LETTER=		[a-zA-Z]
 WHITESPACE=	[ \t]
 LineTerminator = \r|\n|\r\n    
 
-
 %%
 
-{ }
-if				{return IF;}
-else			{return ELSE;} 
-public		{return PUBLIC;}
-private		{return PRIVATE;}
-class			{return CLASS;}
+{LETTER}({LETTER}|{DIGIT})?         {return PROVA;}
+{DIGIT}+(\.{DIGIT}+)?               {return VALUE;}
 
-{LETTER}({LETTER}|{DIGIT})* {return IDENT;}
-{DIGIT}+                    {return NUM;}
-
-"=" |
 "+" |
+"-" |
 "*" |
-";" |
-"{" |
-"}" |
-"." |
+"/" |
 "," |
 "(" |
-")"                         {return yytext().charAt(0);}
-"=="                        {return EQUALS;}
-{WHITESPACE}+               { }
+")" | {return yytext().charAt(0);}
+
+{WHITESPACE}+       { }
 {LineTerminator}		{}
-.          {System.out.println(yyline+1 + ": caracter invalido: "+yytext());}
+.                   {System.out.println(yyline+1 + ": caracter invalido: "+yytext());}
